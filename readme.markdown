@@ -10,7 +10,7 @@ in the context: all arrays are sorted.
 
 You can also pass in a custom comparison function.
 
-[![build status](https://secure.travis-ci.org/periodo/jsonld-stable-stringify.png)](http://travis-ci.org/periodo/jsonld-stable-stringify)
+[![Build Status](https://travis-ci.com/periodo/jsonld-stable-stringify.svg?branch=master)](https://travis-ci.com/periodo/jsonld-stable-stringify)
 
 # example
 
