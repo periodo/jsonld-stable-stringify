@@ -23,7 +23,7 @@ module.exports = function (obj, opts) {
         : null;
 
     var seen = [];
-    return (function stringify (parent, key, node, level, inList=false) {
+    return (function stringify (parent, key, node, level, inList) {
         var indent = space ? ('\n' + new Array(level + 1).join(space)) : '';
         var colonSeparator = space ? ': ' : ':';
 
