@@ -125,7 +125,7 @@ the same as the replacer
 With [npm](https://npmjs.org) do:
 
 ```
-npm install json-stable-stringify
+npm install jsonld-stable-stringify
 ```
 
 # license
