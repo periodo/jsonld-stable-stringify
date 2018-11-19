@@ -1,18 +1,21 @@
-# json-stable-stringify
+# jsonld-stable-stringify
 
-deterministic version of `JSON.stringify()` so you can get a consistent hash
-from stringified results
+Deterministic version of `JSON.stringify()` so you can get a consistent hash
+from stringified JSON-LD. This is a clone of [json-stable-stringify](https://github.com/substack/json-stable-stringify) except
+that arrays are sorted too (since JSON-LD arrays are interpreted as sets, so
+order does not matter).
+
+Note that this function does *not* respect `"@container": "@list"` directives
+in the context: all arrays are sorted.
 
 You can also pass in a custom comparison function.
 
-[![browser support](https://ci.testling.com/substack/json-stable-stringify.png)](https://ci.testling.com/substack/json-stable-stringify)
-
-[![build status](https://secure.travis-ci.org/substack/json-stable-stringify.png)](http://travis-ci.org/substack/json-stable-stringify)
+[![build status](https://secure.travis-ci.org/periodo/jsonld-stable-stringify.png)](http://travis-ci.org/substack/json-stable-stringify)
 
 # example
 
 ``` js
-var stringify = require('json-stable-stringify');
+var stringify = require('jsonld-stable-stringify');
 var obj = { c: 8, b: [{z:6,y:5,x:4},7], a: 3 };
 console.log(stringify(obj));
 ```
@@ -20,7 +23,7 @@ console.log(stringify(obj));
 output:
 
 ```
-{"a":3,"b":[{"x":4,"y":5,"z":6},7],"c":8}
+{"a":3,"b":[7,{"x":4,"y":5,"z":6}],"c":8}
 ```
 
 # methods

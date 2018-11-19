@@ -16,7 +16,7 @@ test('object with undefined', function (t) {
 test('array with undefined', function (t) {
 	t.plan(1);
 	var obj = [4, undefined, 6];
-	t.equal(stringify(obj), '[4,null,6]');
+	t.equal(stringify(obj), '[4,6,null]');
 });
 
 test('object with empty string', function (t) {
@@ -28,5 +28,5 @@ test('object with empty string', function (t) {
 test('array with empty string', function (t) {
 	t.plan(1);
 	var obj = [4, '', 6];
-	t.equal(stringify(obj), '[4,"",6]');
+	t.equal(stringify(obj), '["",4,6]');
 });

@@ -1,7 +1,7 @@
 {
-  "name": "json-stable-stringify",
+  "name": "jsonld-stable-stringify",
   "version": "1.0.1",
-  "description": "deterministic JSON.stringify() with custom sorting to get deterministic hashes from stringified results",
+  "description": "deterministic JSON.stringify() with custom sorting to get deterministic hashes from stringified JSON-LD",
   "main": "index.js",
   "dependencies": {
     "jsonify": "~0.0.0"
@@ -12,21 +12,11 @@
   "scripts": {
     "test": "tape test/*.js"
   },
-  "testling": {
-    "files": "test/*.js",
-    "browsers": [
-      "ie/8..latest",
-      "ff/5", "ff/latest",
-      "chrome/15", "chrome/latest",
-      "safari/latest",
-      "opera/latest"
-    ]
-  },
   "repository": {
     "type": "git",
-    "url": "git://github.com/substack/json-stable-stringify.git"
+    "url": "git://github.com/periodo/jsonld-stable-stringify.git"
   },
-  "homepage": "https://github.com/substack/json-stable-stringify",
+  "homepage": "https://github.com/periodo/jsonld-stable-stringify",
   "keywords": [
     "json",
     "stringify",

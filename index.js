@@ -41,6 +41,7 @@ module.exports = function (obj, opts) {
                 var item = stringify(node, i, node[i], level+1) || json.stringify(null);
                 out.push(indent + space + item);
             }
+            out.sort(cmp);
             return '[' + out.join(',') + indent + ']';
         }
         else {
