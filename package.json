@@ -30,5 +30,10 @@
     "email": "mail@substack.net",
     "url": "http://substack.net"
   },
+  "contributors": [{
+    "name": "Ryan Shaw",
+    "email": "ryanshaw@unc.edu",
+    "url": "https://aeshin.org"
+  }],
   "license": "MIT"
 }
