@@ -18,8 +18,12 @@ module.exports = function (obj, opts) {
         };
     })(opts.cmp);
 
+    const context = (isObject(obj) && '@context' in obj)
+        ? obj['@context']
+        : null;
+
     var seen = [];
-    return (function stringify (parent, key, node, level) {
+    return (function stringify (parent, key, node, level, inList=false) {
         var indent = space ? ('\n' + new Array(level + 1).join(space)) : '';
         var colonSeparator = space ? ': ' : ':';
 
@@ -35,13 +39,19 @@ module.exports = function (obj, opts) {
         if (typeof node !== 'object' || node === null) {
             return json.stringify(node);
         }
+        if (isList(key, context)) {
+            inList = true;
+        }
         if (isArray(node)) {
             var out = [];
             for (var i = 0; i < node.length; i++) {
-                var item = stringify(node, i, node[i], level+1) || json.stringify(null);
+                var item = (stringify(node, i, node[i], level+1, inList)
+                            || json.stringify(null));
                 out.push(indent + space + item);
             }
-            out.sort(cmp);
+            if (! inList) {
+                out.sort(cmp);
+            }
             return '[' + out.join(',') + indent + ']';
         }
         else {
@@ -69,6 +79,23 @@ module.exports = function (obj, opts) {
             return '{' + out.join(',') + indent + '}';
         }
     })({ '': obj }, '', obj, 0);
+};
+
+var isList = function (key, context) {
+    if (key === '@list') {
+        return true;
+    }
+    if (isObject(context) &&
+        isObject(context[key]) &&
+        '@container' in context[key] &&
+        context[key]['@container'] === '@list') {
+        return true;
+    }
+    return false;
+}
+
+var isObject = function (x) {
+    return {}.toString.call(x) === '[object Object]';
 };
 
 var isArray = Array.isArray || function (x) {

@@ -3,16 +3,13 @@
 Deterministic version of `JSON.stringify()` so you can get a consistent hash
 from stringified JSON-LD. This is a clone of [json-stable-stringify](https://github.com/substack/json-stable-stringify) except
 that arrays are sorted too (since JSON-LD arrays are interpreted as sets, so
-order does not matter).
-
-Note that this function does *not* respect `"@container": "@list"` directives
-in the context: all arrays are sorted.
+order does not matter). The [`@list`](https://www.w3.org/TR/json-ld11/#lists) keyword: arrays marked as lists are not sorted (and this applies recursively).
 
 You can also pass in a custom comparison function.
 
 [![Build Status](https://travis-ci.com/periodo/jsonld-stable-stringify.svg?branch=master)](https://travis-ci.com/periodo/jsonld-stable-stringify)
 
-# example
+# examples
 
 ``` js
 var stringify = require('jsonld-stable-stringify');
@@ -24,6 +21,18 @@ output:
 
 ```
 {"a":3,"b":[7,{"x":4,"y":5,"z":6}],"c":8}
+```
+
+``` js
+var stringify = require('jsonld-stable-stringify');
+var obj = {'@context':{a:{"@container": "@list"}}, a:[[3,2,1],[6,5,4]]};
+console.log(stringify(obj));
+```
+
+output:
+
+```
+{"@context":{"a":{"@container":"@list"}},"a":[[3,2,1],[6,5,4]]}
 ```
 
 # methods
